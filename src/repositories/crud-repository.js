@@ -17,6 +17,9 @@ class CrudRepository {
                 id: data
             }
         });
+        if(!response){
+            throw new AppError('The required object does not exist', StatusCodes.NOT_FOUND);
+        }
         return response;
     }
 
