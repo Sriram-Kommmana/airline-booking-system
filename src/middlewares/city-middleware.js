@@ -3,11 +3,11 @@ const { ErrorResponse } = require('../utils/common');
 const AppError = require('../utils/errors/app-error');
 
 function validateCreateRequest(req, res, next) {
-    if(!req.body.modelNumber)
+    if(!req.body || !req.body.name)
     {   
-        ErrorResponse.message = 'Something went wrong while creating airplane';
+        ErrorResponse.message = 'Something went wrong while creating city';
         
-        ErrorResponse.error = new AppError(['model number is not found in the oncoming request'], StatusCodes.BAD_REQUEST);
+        ErrorResponse.error = new AppError(['city name is not found in the oncoming request'], StatusCodes.BAD_REQUEST);
         
         return res
             .status(StatusCodes.BAD_REQUEST)
