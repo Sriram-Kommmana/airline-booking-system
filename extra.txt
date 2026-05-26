@@ -1,0 +1,45 @@
+Sequelize Association Helper Methods
+
+In Sequelize, when associations are defined between models using methods like hasMany(), belongsTo(), hasOne(), or belongsToMany(), Sequelize automatically generates special helper methods on model instances. These methods allow us to interact with related data in an object-oriented way instead of writing manual SQL queries.
+
+Example:
+
+City.hasMany(Airport);
+Airport.belongsTo(City);
+
+After defining this relationship, Sequelize automatically adds methods such as:
+
+getAirports() → fetch all airports of a city
+createAirport() → create a new airport linked to a city
+addAirport() → associate an airport with a city
+removeAirport() → remove association
+countAirports() → count related airports
+----->>>>>
+
+    const { City, Airport } = require('./models');
+    // const bengaluru = await City.findByPk(1, {include: {model: Airport}});
+    // console.log(bengaluru);
+    // const airport = await Airport.create({name: 'Kempegowda Airport', code: 'BLR', cityId: 1});
+    // const dbpairport = await bengaluru.createAirport({name: 'Huballi Airport', code: 'HBL'});
+    // console.log(dbpairport);
+    // const airportsInBlr = await bengaluru.getAirports();
+    // console.log(airportsInBlr);
+    // const hbairport = await Airport.findByPk(3);
+    // console.log(hbairport);
+    // await bengaluru.removeAirports(hbairport);
+    // const mumbai = await City.findByPk(2);
+    // const sh = mumbai.createAirport({name: 'CSI airport', code: 'MUM'});
+    // await City.destroy({
+    //     where: {
+    //         id: 2
+    //     }
+    // });
+    // const sh = await Airport.findByPk(2);
+    // mumbai.removeAirport(sh)
+    // const city = await City.findByPk(4);
+    // await city.createAirport({name: 'Indore airport', code: 'IND'});
+    await City.destroy({
+        where: {
+            id: 4
+        }
+    });
